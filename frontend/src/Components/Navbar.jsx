@@ -99,7 +99,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar fixed top-0 z-10 bg-base-100">
+    <div className="navbar text-white  px-[10rem] fixed top-0 z-10 bg-[#191A1F]">
       <div className="navbar-start">
         {/* small screen menu */}
         <div className="dropdown">
@@ -135,24 +135,10 @@ const Navbar = () => {
           </ul>
         </div>
         {/* heading */}
-        <a className="btn btn-ghost normal-case text-xl">
+        <a className="btn btn-ghost font-bold text-xl">
           Instacorp Securities
         </a>
       </div>
-      {/* large screen navbar */}
-      {/* <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal gap-4 px-1">
-          <li>
-            <Link to="/">Paper Trading</Link>
-          </li>
-          <li>
-            <Link to="/marketplace">Market Place</Link>
-          </li>
-          <li>
-            <Link to="/marketplace">Trading</Link>
-          </li>
-        </ul>
-      </div> */}
 
       {/* Login/Register Modal */}
       <div className="navbar-end">
