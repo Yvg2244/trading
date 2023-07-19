@@ -17,26 +17,26 @@ const Register = () => {
   // Ref for input fields
   const inputRefs = useRef([]);
 
-  useEffect(() => {
-    const text = "Welcome to Degen Money";
-    let index = 0;
-    let timer;
+  // useEffect(() => {
+  //   const text = "Welcome to Degen Money";
+  //   let index = 0;
+  //   let timer;
 
-    const animateText = () => {
-      if (index < text.length - 1) {
-        setWelcomeText((prevText) => prevText + text[index]);
-        index++;
-      } else {
-        clearInterval(timer);
-      }
-    };
+  //   const animateText = () => {
+  //     if (index < text.length - 1) {
+  //       setWelcomeText((prevText) => prevText + text[index]);
+  //       index++;
+  //     } else {
+  //       clearInterval(timer);
+  //     }
+  //   };
 
-    timer = setInterval(animateText, 100);
+  //   timer = setInterval(animateText, 100);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (currentStep < inputRefs.current.length) {
