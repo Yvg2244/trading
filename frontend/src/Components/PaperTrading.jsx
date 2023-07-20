@@ -204,7 +204,7 @@ const PaperTrading = () => {
   // }
 
   return (
-    <div className="flex flex-col px-[10rem] bg-black gap-4 w-ful h-full pt-[5rem] ">
+    <div className="flex flex-col px-[5rem] bg-black gap-4 w-ful h-full pt-[5rem] ">
       {/* header - nifty time  */}
       <div className="alert bg-transparent text-white border-none">
         <div className="flex flex-col gap-1">
@@ -216,9 +216,9 @@ const PaperTrading = () => {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-end">
-        <button className="btn" onClick={() => window.addModal.showModal()}>
-          Add
+      <div className="w-full flex ">
+        <button className="w-full bg-[#3186D4] text-white py-[12px] px-[17px] font-semibold text-start" onClick={() => window.addModal.showModal()}>
+          Click here add Zerodha account.
         </button>
         <dialog id="addModal" className="modal ">
           <form method="dialog" className="modal-box  ">
@@ -289,8 +289,9 @@ const PaperTrading = () => {
         </dialog>
       </div>
       {/* main area displays cards */}
-      <div className="grid gap-x-2 gap-y-4 grid-cols-12">
+      <div className="flex gap-4 flex-wrap">
         {/* use map  */}
+        {/* if loss add bg-[#7BD7BB] */}
         <PaperTradingCard />
         <PaperTradingCard />
         <PaperTradingCard />

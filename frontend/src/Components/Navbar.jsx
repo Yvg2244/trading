@@ -27,23 +27,28 @@ const Navbar = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-      (res.emailExists)?setEmailError(true):setEmailError(false);
-      (res.usernameExists)?setUsernameError(true):setUsernameError(false);
-          if(!emailError&& !usernameError) {
+        res.emailExists ? setEmailError(true) : setEmailError(false);
+        res.usernameExists ? setUsernameError(true) : setUsernameError(false);
+        if (!emailError && !usernameError) {
           fetch("http://localhost:5000/register", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ FullName:registerFullName, email:registerEmail, password:registerPassword, Username:registerUserName }),
+            body: JSON.stringify({
+              FullName: registerFullName,
+              email: registerEmail,
+              password: registerPassword,
+              Username: registerUserName,
+            }),
           })
             .then((res) => res.json())
             .then((res) => {
               console.log(res, "userRegister");
-              setRegisterEmail("")
-              setRegisterFullName("")
-              setRegisterPassword("")
-              setRegisterUserName("")
+              setRegisterEmail("");
+              setRegisterFullName("");
+              setRegisterPassword("");
+              setRegisterUserName("");
               setRegistration(true);
             })
             .catch((error) => {
@@ -99,7 +104,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar text-white  px-[10rem] fixed top-0 z-10 bg-[#191A1F]">
+    <div className="navbar text-white  px-[5rem] fixed top-0 z-10 bg-[#191A1F]">
       <div className="navbar-start">
         {/* small screen menu */}
         <div className="dropdown">
@@ -135,19 +140,23 @@ const Navbar = () => {
           </ul>
         </div>
         {/* heading */}
-        <a className="btn btn-ghost font-bold text-xl">
-          Instacorp Securities
-        </a>
+        <a className="btn btn-ghost font-bold text-xl">Instacorp Securities</a>
       </div>
 
       {/* Login/Register Modal */}
       <div className="navbar-end">
         {isLoggedIn ? (
-          <button className="btn" onClick={handleLogout}>
+          <button
+            className="bg-white text-black rounded-md font-bold text-[12px] px-[23px] py-[7px]"
+            onClick={handleLogout}
+          >
             Logout
           </button>
         ) : (
-          <button className="btn" onClick={() => window.loginModal.showModal()}>
+          <button
+            className="bg-white text-black rounded-md font-bold text-[12px] px-[23px] py-[7px]"
+            onClick={() => window.loginModal.showModal()}
+          >
             Login
           </button>
         )}
@@ -155,7 +164,10 @@ const Navbar = () => {
         {/* login model`` */}
         <dialog id="loginModal" className="modal ">
           {isLoggedIn ? (
-            <form method="dialog" className="modal-box flex flex-col gap-2">
+            <form
+              method="dialog"
+              className="bg-[#191A1F] text-white modal-box flex flex-col gap-2"
+            >
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
               </button>
@@ -164,120 +176,131 @@ const Navbar = () => {
               </h4>
             </form>
           ) : (
-            <form method="dialog" className="modal-box flex flex-col gap-2">
+            <form
+              method="dialog"
+              className="bg-[#191A1F] text-lg text-white modal-box flex flex-col gap-2"
+            >
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
               </button>
-              <h4 className="font-bold my-4 flex flex-col text-md">Login</h4>
-              <label className="label">
-                <span className="label-text text-md font-bold">Email</span>
-              </label>
+              <h4 className="font-bold my-4 flex flex-col text-4xl">Login</h4>
               <input
                 type="email"
                 placeholder="Enter email"
                 onChange={(e) => {
                   setLoginEmail(e.target.value);
                 }}
-                className="input input-bordered w-full max-w-xs"
+                className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
               />
-              <label className="label">
-                <span className="label-text text-md font-bold">Password</span>
-              </label>
+
               <input
                 type="password"
                 placeholder="Enter password"
                 onChange={(e) => {
                   setLoginPassword(e.target.value);
                 }}
-                className="input input-bordered w-full max-w-xs"
+                className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
               />
-              <Link onClick={handleLogin} className="btn w-full ">
+              <Link
+                onClick={handleLogin}
+                className="bg-white w-fit text-black rounded-md font-bold text-[16px] px-[23px] py-[7px]"
+              >
                 Sign In
               </Link>
-              <p>Don't have a account?</p>
+              <p className="py-4">Don't have a account?</p>
               <a
                 onClick={() => window.registerModal.showModal()}
-                className="btn w-full "
+                className="bg-white text-black rounded-md w-fit font-bold text-[16px] px-[23px] py-[7px]"
               >
                 Register
               </a>
               {/* register model */}
               <dialog id="registerModal" className="modal ">
-               {registration?<form method="dialog" className="modal-box flex flex-col gap-2">
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                ✕
-              </button>
-              <h4 className="font-bold my-4 flex flex-col text-md">
-                Registration Successful. Kindly Login aggain
-              </h4>
-            </form>:<form method="dialog" className="modal-box  ">
-                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                    ✕
-                  </button>
-                  <h4 className="font-bold my-4 flex flex-col text-md">
-                    Register
-                  </h4>
-                  <label className="label">
-                    <span className="label-text text-md font-bold">
-                      Full Name
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your full name"
-                    onChange={(e) => {
-                      setRegisterFullName(e.target.value);
-                    }}
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                  <label className="label">
-                    <span className="label-text text-md font-bold">Email</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your email"
-                    onChange={(e) => {
-                      setRegisterEmail(e.target.value);
-                    }}
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                  {(emailError)?<span className="text-red-600 text-sm">Email already exists</span>:<></>}
+                {registration ? (
+                  <form
+                    method="dialog"
+                    className="modal-box flex flex-col gap-2"
+                  >
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      ✕
+                    </button>
+                    <h4 className="font-bold my-4 flex flex-col text-md">
+                      Registration Successful. Kindly Login aggain
+                    </h4>
+                  </form>
+                ) : (
+                  <form
+                    className="bg-[#191A1F] text-white modal-box flex flex-col gap-2"
+                    method="dialog"
+                  >
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                      ✕
+                    </button>
+                    <h4 className="font-bold my-4 flex flex-col text-4xl">
+                      Register
+                    </h4>
+                    <input
+                      type="text"
+                      placeholder="Enter your full name"
+                      onChange={(e) => {
+                        setRegisterFullName(e.target.value);
+                      }}
+                      className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
+                    />
 
-                  <label className="label">
-                    <span className="label-text text-md font-bold">
-                      Password
-                    </span>
-                  </label>
-                  <input
-                    type="password"
-                    onChange={(e) => {
-                      setRegisterPassword(e.target.value);
-                    }}
-                    placeholder="Enter your password"
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                  <label className="label">
-                    <span className="label-text text-md font-bold">
-                      Username
-                    </span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter your username"
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => {
-                      setRegisterUserName(e.target.value);
-                    }}
-                  />
-                  {(usernameError)?<span className="text-red-600 text-sm">Username already exists</span>:<></>}
+                    <input
+                      type="text"
+                      placeholder="Enter your email"
+                      onChange={(e) => {
+                        setRegisterEmail(e.target.value);
+                      }}
+                      className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
+                    />
+                    {emailError ? (
+                      <span className="text-red-600 text-sm">
+                        Email already exists
+                      </span>
+                    ) : (
+                      <></>
+                    )}
 
-                  <a className="btn w-full my-4" onClick={handleRegister}>
-                    Register
-                  </a>
-                  <p>Already have a account?</p>
-                  <button className="btn my-4 w-full">Sign In</button>
-                </form>}
-                
+                    <input
+                      type="password"
+                      onChange={(e) => {
+                        setRegisterPassword(e.target.value);
+                      }}
+                      placeholder="Enter your password"
+                      className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="Enter your username"
+                      className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
+                      onChange={(e) => {
+                        setRegisterUserName(e.target.value);
+                      }}
+                    />
+                    {usernameError ? (
+                      <span className="text-red-600 text-sm">
+                        Username already exists
+                      </span>
+                    ) : (
+                      <></>
+                    )}
+
+                    <a
+                      className="bg-white w-fit text-black rounded-md font-bold text-[16px] px-[23px] py-[7px]"
+                      onClick={handleRegister}
+                    >
+                      Register
+                    </a>
+                    <p className="my-4">Already have a account?</p>
+                    <button className="bg-white w-fit text-black rounded-md font-bold text-[16px] px-[23px] py-[7px]">
+                      Sign In
+                    </button>
+                  </form>
+                )}
               </dialog>
             </form>
           )}
