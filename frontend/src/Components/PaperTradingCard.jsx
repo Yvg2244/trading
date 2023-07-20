@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
 const PaperTradingCard = () => {
   const [show, setShow] = useState(false);
   const showButton = () => {
@@ -28,7 +28,7 @@ const PaperTradingCard = () => {
             show ? "flex" : "hidden"
           } h-full  justify-center items-center px-2`}
         >
-          <button>&#62;</button>
+          <Link to="/marketplace">&#62;</Link>
         </div>
       </div>
       {/* <button className="btn">Generate</button> */}

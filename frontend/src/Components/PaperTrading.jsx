@@ -217,22 +217,31 @@ const PaperTrading = () => {
         </div>
       </div>
       <div className="w-full flex ">
-        <button className="w-full bg-[#3186D4] text-white py-[12px] px-[17px] font-semibold text-start" onClick={() => window.addModal.showModal()}>
+        <button
+          className="w-full bg-[#3186D4] text-white py-[12px] px-[17px] font-semibold text-start"
+          onClick={() => window.addModal.showModal()}
+        >
           Click here add Zerodha account.
         </button>
+        {/* //add modal */}
         <dialog id="addModal" className="modal ">
-          <form method="dialog" className="modal-box  ">
+          <form
+            method="dialog"
+            className="bg-[#191A1F] text-white modal-box flex flex-col gap-2"
+          >
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
-            <h4 className="font-bold my-4 flex flex-col text-md">Register</h4>
+            <h4 className="font-bold my-4 flex flex-col text-4xl">
+              Add Account
+            </h4>
             <input
               onChange={(e) => {
                 setEnteredName(e.target.value);
               }}
               type="text"
               placeholder="Name"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />{" "}
             <input
               type="text"
@@ -240,7 +249,7 @@ const PaperTrading = () => {
                 setUserId(e.target.value);
               }}
               placeholder="User ID"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />{" "}
             <input
               type="password"
@@ -248,7 +257,7 @@ const PaperTrading = () => {
                 setPassword(e.target.value);
               }}
               placeholder="Password"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />{" "}
             <input
               type="text"
@@ -256,7 +265,7 @@ const PaperTrading = () => {
                 setApiKey(e.target.value);
               }}
               placeholder="API Key"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />{" "}
             <input
               type="text"
@@ -264,7 +273,7 @@ const PaperTrading = () => {
                 setSecretKey(e.target.value);
               }}
               placeholder="Secret Key"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />
             <input
               type="text"
@@ -272,7 +281,7 @@ const PaperTrading = () => {
                 setTotp(e.target.value);
               }}
               placeholder="TOTP"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />
             <input
               type="text"
@@ -280,9 +289,12 @@ const PaperTrading = () => {
                 setBroker(e.target.value);
               }}
               placeholder="Broker"
-              className="input my-2 input-bordered w-full max-w-xs"
+              className="my-4 input bg-transparent rounded-none text-lg border-b-[1px] border-t-[0px] border-r-[0px] border-l-[0px] border-white input-bordered w-full max-w-xs"
             />
-            <a onClick={handleAddSubmit} className="btn my-4 w-full">
+            <a
+              onClick={handleAddSubmit}
+              className="bg-white w-fit text-black rounded-md font-bold text-[16px] px-[23px] py-[7px]"
+            >
               Submit
             </a>
           </form>
