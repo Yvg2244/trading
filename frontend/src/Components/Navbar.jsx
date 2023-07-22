@@ -83,7 +83,7 @@ const Navbar = () => {
         console.log(data.data);
         if (data.status === "ok") {
           window.localStorage.setItem("token", data.token);
-          window.localStorage.setItem("email", data.email);
+          // window.localStorage.setItem("email", data.email);
           window.localStorage.setItem("userdata", JSON.stringify(data.data));
 
           setIsLoggedIn(true);
@@ -100,6 +100,8 @@ const Navbar = () => {
     // Clear token from local storage
     console.log("first");
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("userdata");
+
     setIsLoggedIn(false);
   };
 
@@ -152,7 +154,8 @@ const Navbar = () => {
           >
             Logout
           </button>
-        ) : (
+        ) : 
+        (
           <button
             className="bg-white text-black rounded-md font-bold text-[12px] px-[23px] py-[7px]"
             onClick={() => window.loginModal.showModal()}

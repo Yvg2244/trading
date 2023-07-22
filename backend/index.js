@@ -11,8 +11,8 @@ const signinRoute=require("./routes/login")
 const authRoute=require("./routes/checkAuth")
 const checkRouter=require("./routes/check")
 
-// const userDataRouter=require("./routes/userData")
-// const generateTokenRouter=require("./routes/generateToken")
+const userDataRouter=require("./routes/userData")
+const generateTokenRouter=require("./routes/generateToken")
 // const instruments=require("./routes/instruments")
 
 
@@ -35,9 +35,9 @@ mongoose
   app.use("/register", signupRoute)
   app.use("/login-user", signinRoute)
   app.use("/checkAuth", authRoute)
-//   app.use("/userData",userDataRouter)
+  app.use("/userData",userDataRouter)
   app.use("/check",checkRouter)
-//   app.use("/generateToken",generateTokenRouter)
+  app.use("/generateToken",generateTokenRouter)
 //   app.use("/instruments",instruments)
 
   

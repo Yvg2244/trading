@@ -12,6 +12,8 @@ const PaperTrading = () => {
   const [apiKey, setApiKey] = useState("");
   const [secretKey, setSecretKey] = useState("");
   const [formData, setFormData] = useState([]);
+  const [updatedMainData,setUpdatedMainData]=useState(JSON.parse(window.localStorage.getItem("userdata")).BrokerList)
+  console.log(updatedMainData)
 
   const handleAddSubmit = () => {
     const formDataObj = {
@@ -23,7 +25,8 @@ const PaperTrading = () => {
       secretKey: secretKey,
       broker: broker, // Add the selected dropdown value
     };
-    fetch("http://localhost:8000/userData", {
+    console.log(formDataObj)
+    fetch("http://localhost:5000/userData", {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -42,12 +45,14 @@ const PaperTrading = () => {
           // setUpdatedMainData(prev=>[...prev, formDataObj])
           setUpdatedMainData((prev) => {
             if (!Array.isArray(prev)) {
+              console.log("not an array updated")
               return [formDataObj]; // Set prev to an empty array if it's not already an array
             }
 
             return [...prev, formDataObj];
           });
           console.log("Form data updated successfully");
+          setTimeout(console.log(updatedMainData), 2000);
           // console.log(mainData)
           // setFormData(updatedMainData); // Update the local state with the updated form data
         } else {
@@ -304,13 +309,16 @@ const PaperTrading = () => {
       <div className="flex gap-4 flex-wrap">
         {/* use map  */}
         {/* if loss add bg-[#7BD7BB] */}
+        {updatedMainData&&updatedMainData.map((item,index)=>{
+          console.log(item.username)
+          return <PaperTradingCard broker={item.broker} key={index} accountName={item.username}/>
+        })}
+        {/* <PaperTradingCard />
         <PaperTradingCard />
         <PaperTradingCard />
         <PaperTradingCard />
         <PaperTradingCard />
-        <PaperTradingCard />
-        <PaperTradingCard />
-        <PaperTradingCard />
+        <PaperTradingCard /> */}
       </div>
     </div>
   );
