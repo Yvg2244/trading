@@ -4,7 +4,7 @@ const User = require("../models/userDetails");
 const { checkAuth } = require("../modules/auth");
 
 router.post("/", async (req, res) => {
-  const { token, username } = req.body;
+  const { token} = req.body;
   
   const checkAuthResponse = await checkAuth(token);
   if (!checkAuthResponse.status) {

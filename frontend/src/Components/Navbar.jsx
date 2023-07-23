@@ -82,11 +82,13 @@ const Navbar = () => {
       .then((data) => {
         console.log(data.data);
         if (data.status === "ok") {
+          setIsLoggedIn(true);
           window.localStorage.setItem("token", data.token);
           // window.localStorage.setItem("email", data.email);
           window.localStorage.setItem("userdata", JSON.stringify(data.data));
 
-          setIsLoggedIn(true);
+          console.log("refreshing")
+          window.location.reload(true);
         } else {
           setError("Invalid email or password");
         }
